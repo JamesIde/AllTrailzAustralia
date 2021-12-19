@@ -15,7 +15,7 @@ namespace Repository
         public Task<Trail> Create(Trail trail);
 
         //Get by Id
-        public Task<Trail> Get(int id);  
+        public Task<Trail> Get(int? id);  
         //List all Trails (Read)
         public Task<IEnumerable<Trail>> GetAll();   
 

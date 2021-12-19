@@ -46,7 +46,7 @@ namespace Repository
             return 0;
         }
 
-        public async Task<Trail> Get(int id)
+        public async Task<Trail> Get(int? id)
         {
             var trail = await _db.Trails.FindAsync(id);
             return trail;

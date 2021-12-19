@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataAccess", "DataAccess\Da
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Repository", "Repository\Repository.csproj", "{DD725A15-92A9-4685-9E3D-0A1E9E8F7096}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AllTrailzAustralia_API", "AllTrailzAustralia_API\AllTrailzAustralia_API.csproj", "{84229AB8-F7B6-4E3B-A75F-51C479137259}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{DD725A15-92A9-4685-9E3D-0A1E9E8F7096}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DD725A15-92A9-4685-9E3D-0A1E9E8F7096}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DD725A15-92A9-4685-9E3D-0A1E9E8F7096}.Release|Any CPU.Build.0 = Release|Any CPU
+		{84229AB8-F7B6-4E3B-A75F-51C479137259}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{84229AB8-F7B6-4E3B-A75F-51C479137259}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{84229AB8-F7B6-4E3B-A75F-51C479137259}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{84229AB8-F7B6-4E3B-A75F-51C479137259}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
