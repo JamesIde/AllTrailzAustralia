@@ -1,0 +1,59 @@
+﻿@page "/trails/create"
+
+@using DataAccess.Model
+@using Repository
+
+@inject ITrailsRepository trailsRepository
+@inject NavigationManager NavigationManager
+<h3>Create your trail</h3>
+
+
+<div class="container d-flex justify-content-center m-0 p-0">
+
+    <EditForm Model="@trail" OnValidSubmit = "HandleTrailCreation" class="col-sm-12 col-md-10 col-lg-8 p-0">
+        <DataAnnotationsValidator />
+        <ValidationSummary />
+
+        <div class = "form-group">
+            <label for "Trail Name"></label>
+            <InputText id = "Name" @bind-Value = "@trail.Name" class = "form-control" placeholder = "Enter trail name"></InputText>
+        </div>
+        <div class = "form-group">
+            <label for "Trail Distance (in kilometers)"></label>
+            <InputText id = "distance" @bind-Value = "@trail.Distance" class = "form-control" placeholder = "Trail distance (in kilometers)"></InputText>
+        </div>
+        <div class = "form-group">
+            <label for "Trail Length"></label>
+            <InputText id = "days" @bind-Value = "@trail.Days" class = "form-control" placeholder = "Trail length (in days)"></InputText>
+        </div>
+        <div class = "form-group">
+            <label for "Trail Description"></label>
+            <InputTextArea id = "description" @bind-Value = "@trail.Description" class = "form-control" placeholder = "Tell us about the walk"></InputTextArea>
+        </div>
+        <button type="submit" class="btn btn-sm btn-success"><i class="fas fa-plus pr-2"></i>Create</button>
+
+
+
+    </EditForm>
+</div>
+
+@code {
+    public Trail trail = new Trail();
+
+
+    private async Task HandleTrailCreation()
+    {
+
+        try
+        {
+                trail = await trailsRepository.Create(trail);
+                NavigationManager.NavigateTo($"/trails");
+
+        }
+        catch(Exception ex)
+        {
+            throw ex;
+        }
+    }
+
+}

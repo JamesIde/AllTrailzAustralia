@@ -1,0 +1,79 @@
+﻿@page "/trails/details/{Id:int}"
+@using DataAccess.Model
+@using Repository
+
+@inject NavigationManager NavigationManager
+@inject ITrailsRepository trailsRepository
+<h3>@Title information</h3>
+
+
+<div class="container d-flex justify-content-center m-0 p-0">
+
+    <EditForm Model="@individualtrail" OnValidSubmit = "HandleTrailUpdate" class="col-sm-12 col-md-10 col-lg-8 p-0">
+        <DataAnnotationsValidator />
+        <ValidationSummary />
+
+        <div class = "form-group">
+            <label for "Trail Name">Trail Name</label>
+            <InputText id = "Name" @bind-Value = "@individualtrail.Name" class = "form-control" placeholder = "Enter trail name"></InputText>
+        </div>
+        <div class = "form-group">
+            <label for "Trail Distance (in kilometers)">Trail Distance</label>
+            <InputText id = "distance" @bind-Value = "@individualtrail.Distance" class = "form-control" placeholder = "Trail distance (in kilometers)"></InputText>
+        </div>
+        <div class = "form-group">
+            <label for "Trail Length">Trail Length</label>
+            <InputText id = "days" @bind-Value = "@individualtrail.Days" class = "form-control" placeholder = "Trail length (in days)"></InputText>
+        </div>
+        <div class = "form-group">
+            <label for "Trail Description">Trail Description</label>
+            <InputTextArea id = "description" @bind-Value = "@individualtrail.Description" class = "form-control" placeholder = "Tell us about the walk" rows = "10"></InputTextArea>
+        </div>
+        <button type="submit" class="btn btn-sm btn-primary"><i class="fas fa-save pr-2"></i>Update</button>
+        <button type="submit" class="btn btn-sm btn-danger" @onclick = "async () => await Delete(individualtrail.Id)"><i class="fas fa-trash pr-2"></i>Delete</button>
+        <a href = "/trails" class="btn btn-sm btn-success" style ="margin right:250px !important;"><i class="fas fa-times pr-2"></i>Cancel</a>
+
+
+
+    </EditForm>
+</div>
+
+@code {
+    public string Title { get; set; }
+    [Parameter]
+    public int? Id { get; set; }
+    public Trail individualtrail = new Trail();
+
+
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            if(Id != null){
+
+                individualtrail = await trailsRepository.Get(Id.Value);
+                Title = individualtrail.Name;
+            }
+        }
+        catch (Exception ex){
+            throw ex;
+        }
+
+    }
+
+    private async Task Delete(int Id)
+    {
+
+        await trailsRepository.Delete(individualtrail.Id);
+        NavigationManager.NavigateTo("/trails");
+    }
+
+    private async Task HandleTrailUpdate()
+    {
+        if(Id != null)
+        {
+            await trailsRepository.Update(individualtrail);
+            NavigationManager.NavigateTo("/trails");
+        }
+    }
+}
